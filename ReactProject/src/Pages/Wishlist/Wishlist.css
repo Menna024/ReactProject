@@ -1,0 +1,19 @@
+.wishlist-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: green;
+}
+
+.wishlist-products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-5rem);
+}
+
+.wishlist-product {
+  background-color: #fff;
+  width: 70%;
+  text-align: center;
+}/*# sourceMappingURL=Wishlist.css.map */

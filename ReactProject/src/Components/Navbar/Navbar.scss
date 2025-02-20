@@ -1,0 +1,42 @@
+.navbar {
+    background-color: #F8F9FA;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+
+    .site-name{
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #000;
+        margin-left: 1rem;
+    }
+
+    .sign-btns {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 20rem;
+        margin-right: 1rem;
+
+        .signup-btn,.login-btn {
+            padding: 0.5rem;
+            background-color: transparent;
+            color: #000;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                color: #007bff;
+            }
+       }
+
+       
+       
+    }
+}

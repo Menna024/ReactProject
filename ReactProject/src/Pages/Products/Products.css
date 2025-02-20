@@ -1,0 +1,10 @@
+.products-component .products-component-products {
+  margin-top: 5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.products-component .products-component-product {
+  width: 100%;
+  background-color: #fff;
+}/*# sourceMappingURL=Products.css.map */

@@ -1,0 +1,33 @@
+.cart-product-card {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1rem auto;
+}
+.cart-product-card .cart-product-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: translateX(4rem);
+}
+.cart-product-card .cart-product-details .cart-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: green;
+}
+.cart-product-card .cart-product-details .cart-remove {
+  color: red;
+}
+.cart-product-card .cart-product-details .cart-name {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+.cart-product-card .cart-product-img img {
+  width: 100%;
+  height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=CartCard.css.map */

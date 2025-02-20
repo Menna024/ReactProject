@@ -1,0 +1,35 @@
+.navbar {
+  background-color: #F8F9FA;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+}
+.navbar .site-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000;
+  margin-left: 1rem;
+}
+.navbar .sign-btns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20rem;
+  margin-right: 1rem;
+}
+.navbar .sign-btns .signup-btn, .navbar .sign-btns .login-btn {
+  padding: 0.5rem;
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+.navbar .sign-btns .signup-btn:hover, .navbar .sign-btns .login-btn:hover {
+  color: #007bff;
+}/*# sourceMappingURL=Navbar.css.map */

@@ -1,0 +1,21 @@
+.categories {
+  display: grid;
+  grid-gap: 1rem 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  padding-left: 50px;
+}
+
+.all-categories-heading {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  color: green;
+}
+
+.category {
+  width: 100%;
+  background-color: #fff;
+}/*# sourceMappingURL=Categories.css.map */

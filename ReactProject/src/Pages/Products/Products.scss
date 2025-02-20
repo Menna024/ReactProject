@@ -1,0 +1,14 @@
+.products-component {
+    .products-component-products {
+        margin-top: 5rem;
+        //  grid-gap:1rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .products-component-product {
+        width: 100%;
+        background-color: #fff;
+    }
+}

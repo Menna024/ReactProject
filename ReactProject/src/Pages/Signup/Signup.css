@@ -1,0 +1,60 @@
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.signup form {
+  padding: 0;
+  margin: 0;
+  width: 30rem;
+  font-size: medium;
+  color: #000;
+}
+.signup form input {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+  border-width: 0.1rem;
+  border-radius: 0.2rem;
+  color: #000;
+}
+.signup form input:focus {
+  box-shadow: 0 0 5px rgb(83, 91, 242);
+  border-color: lightblue !important;
+  outline: none;
+}
+.signup form .form-label {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left !important;
+}
+.signup form .error-text {
+  color: red;
+  padding: 0;
+  margin: 0 0 0.625rem 0;
+  position: absolute;
+}
+.signup form .signup-actions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.1rem;
+}
+.signup form .signup-actions-container .signup-btn {
+  width: 30%;
+  padding: 0.6rem;
+  margin: 2rem auto;
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+.signup form .signup-actions-container .signup-btn.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  border-color: #ccc;
+  color: #666;
+}/*# sourceMappingURL=Signup.css.map */

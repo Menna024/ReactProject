@@ -1,0 +1,13 @@
+.cart-clear-cart-btn {
+  margin-top: 20px;
+  border: 1px solid green;
+  color: black;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-products {
+  margin-top: 10rem;
+}/*# sourceMappingURL=Cart.css.map */

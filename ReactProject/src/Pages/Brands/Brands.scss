@@ -1,0 +1,21 @@
+.brands{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+
+body{
+    padding-top:4.5rem;
+}
+
+.all-brands-heading{
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    color: green;
+}
