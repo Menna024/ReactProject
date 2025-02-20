@@ -40,26 +40,17 @@
 
 
     }
+}
 
-
- .nav-links {
+.nav-links {
+    // background-color: red;
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 30rem;
-    list-style: none;
+    padding: 1rem;
+    margin-right: 20px;
+    // margin-top: 5rem;
 
-    li {
-        a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 500;
-
-        &:hover {
-            color: #007bff;
-        }
-        }
-    }
-    }
 
 }

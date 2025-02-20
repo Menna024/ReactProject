@@ -22,7 +22,8 @@
   width: 20rem;
   margin-right: 1rem;
 }
-.navbar .sign-btns .signup-btn, .navbar .sign-btns .login-btn {
+.navbar .sign-btns .signup-btn,
+.navbar .sign-btns .login-btn {
   padding: 0.5rem;
   background-color: transparent;
   color: #000;
@@ -30,6 +31,16 @@
   border: none;
   cursor: pointer;
 }
-.navbar .sign-btns .signup-btn:hover, .navbar .sign-btns .login-btn:hover {
+.navbar .sign-btns .signup-btn:hover,
+.navbar .sign-btns .login-btn:hover {
   color: #007bff;
+}
+
+.nav-links {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  margin-right: 20px;
 }/*# sourceMappingURL=Navbar.css.map */

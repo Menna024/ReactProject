@@ -25,13 +25,13 @@ const Navbar = () => {
             <h1 className="site-name">Fresh Cart</h1>
             {(token ||  localStorage.getItem('token'))  && console.log('token:', token)}
             {(token.Token ||  localStorage.getItem('token'))&&
-                <div className="nav-link-items">
-                    <NavLink to="/home" className="nav-link-item">Home</NavLink>
-                    <NavLink to="/products" className="nav-link-item">Products</NavLink>
-                    <NavLink to="/cart" className="nav-link-item">Cart</NavLink>
-                    <NavLink to="/wishlist" className="nav-link-item">WishList</NavLink>
-                    <NavLink to="/categories" className="nav-link-item">Categories</NavLink>
-                    <NavLink to="/brands" className="nav-link-item">Brands</NavLink>
+                <div className="nav-links">
+                    <NavLink to="/home" className="nav-link">Home</NavLink>
+                    <NavLink to="/products" className="nav-link">Products</NavLink>
+                    <NavLink to="/cart" className="nav-link">Cart</NavLink>
+                    <NavLink to="/wishlist" className="nav-link">WishList</NavLink>
+                    <NavLink to="/categories" className="nav-link">Categories</NavLink>
+                    <NavLink to="/brands" className="nav-link">Brands</NavLink>
                 </div>
             }
             {!(token.Token ||  localStorage.getItem('token')) &&
