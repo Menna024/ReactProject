@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-around;
 
-    .site-name{
+    .site-name {
         font-size: 1.5rem;
         font-weight: 500;
         color: #000;
@@ -23,7 +23,8 @@
         width: 20rem;
         margin-right: 1rem;
 
-        .signup-btn,.login-btn {
+        .signup-btn,
+        .login-btn {
             padding: 0.5rem;
             background-color: transparent;
             color: #000;
@@ -34,9 +35,31 @@
             &:hover {
                 color: #007bff;
             }
-       }
+        }
 
-       
-       
+
+
     }
+
+
+ .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30rem;
+    list-style: none;
+
+    li {
+        a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+
+        &:hover {
+            color: #007bff;
+        }
+        }
+    }
+    }
+
 }
