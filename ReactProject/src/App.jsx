@@ -38,6 +38,7 @@ import { RemoveProdCartContextProvider } from './Context/RemoveProdCartContext';
 import { RemoveProdWishListContextProvider } from './Context/RemoveProdWishListContext';
 import { CheckoutSessionContextProvider } from './Context/CheckoutSessionContext';
 import { UserIDContextProvider } from './Context/UserIDContext';
+import Payment from './Pages/Payment/Payment';
 
 function App() {
   const routes = createBrowserRouter(
@@ -88,6 +89,9 @@ function App() {
           {
             path: 'check-out/:cartID', element: <CheckOut />
           },
+          {
+            path: 'payment', element: <Payment />
+          }
         ]
       }
     ]
