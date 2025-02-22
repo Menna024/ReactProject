@@ -2,6 +2,7 @@ import './Wishlist.css';
 import { useContext, useEffect, useState } from 'react';
 import { GetWishListProductsContext } from '../../Context/GetWishListProductsContext';
 import WishListCard from '../../Components/WishListCard/WishListCard';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Wishlist = () => {
     const [products, setProducts] = useState();
@@ -15,11 +16,16 @@ const Wishlist = () => {
 
     async function getWishListProductsFromAPI() {
         const resp = await useWishListProducts.getWishListProducts(token);
-
+        setTimeout(() => {
+            toast.success(resp.message);
+        }, 500);
         if (resp.status == 'success') {
             setProducts(resp.data);
             console.log('response from get wishlist products apiz', resp.data);
             console.log('prodz', products);
+
+
+
         }
     }
 
@@ -37,12 +43,13 @@ const Wishlist = () => {
                     {products &&
                         products.map((product) => (
                             <div key={product?.id} className="wishlist-product">
-                                <WishListCard product={product} onRemove={handleProductRemove()}/>
+                                <WishListCard product={product} onRemove={handleProductRemove()} />
                                 <hr></hr>
                             </div>
                         ))}
 
                 </div>
+                <ToastContainer />
             </div>
         );
     }

@@ -9,33 +9,45 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AddProdToCartContext } from '../../Context/AddProdToCartContext';
 import { TokenContext } from '../../Context/TokenContext';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, isFav }) => {
+
+    console.log('IS FAVEDDD??', isFav);
+    console.log('product card', product);
+    // console.log('PRODUCT CARD COMPONENT wishlist products', wishlistProducts);
+
+
     const navigate = useNavigate();
     const token = useContext(TokenContext);
     const useAddProdToWishList = useContext(AddProdToWishListContext);
     const useAddProdToCart = useContext(AddProdToCartContext);
+    // const [isProdWished, setIsProdWished] = useState(isFav);
 
     async function addProductToWishListFromAPI(productID) {
+        // setIsProdWished(false);
         const resp = await useAddProdToWishList.addProductToWishList(productID);
 
         if (resp.status == 'success') {
             console.log(resp.message)
             toast.success(resp.message);
+
+            // setIsProdWished(true);
+
         }
         else {
             console.log(resp.message)
             toast.error(resp.message);
+            // setIsProdWished(false);
         }
 
-        console.log('response from add product to wish list api', resp);
+        // console.log('response from add product to wish list api', resp);
     }
 
-
+    // console.log('PROD CARD VALIDATION', retWishListProducts);
     async function addProductToCartFromAPI(productID) {
         const resp = await useAddProdToCart.addProductToCart(productID);
 
         if (resp.status == 'success') {
-            console.log(resp.message)
+            // console.log(resp.message)
             toast.success(resp.message);
         }
         else {
@@ -43,7 +55,7 @@ const ProductCard = ({ product }) => {
             toast.error(resp.message);
         }
 
-        console.log('response from add product to cart api', resp);
+        // console.log('response from add product to cart api', resp);
     }
 
     if (product) {
@@ -62,30 +74,30 @@ const ProductCard = ({ product }) => {
 
                         </div>
                     </div>
-                    <div className='flex justify-end heart-icon ' onClick={() => {
+                    <div className="flex justify-end heart-icon" onClick={() => {
                         console.log('heart icon clicked');
                         {
                             token.Token &&
-                            addProductToWishListFromAPI(product._id);
+                                addProductToWishListFromAPI(product._id);
                         }
                         {
                             !token.Token &&
-                            toast.error('Please login to add to wishlist');
+                                toast.error('Please login to add to wishlist');
                         }
                     }
-                    }><GiHearts color='black' /></div >
+                    }><GiHearts color={`${isFav ? 'red' : 'black'}`} /></div >
 
                     <button className='product-card-add-btn' onClick={() => {
                         console.log('add btn clicked');
                         {
                             token.Token &&
-                            addProductToCartFromAPI(product._id);
+                                addProductToCartFromAPI(product._id);
                         }
                         {
                             !token.Token &&
-                            toast.error('Please login to add to cart');
+                                toast.error('Please login to add to cart');
                         }
-                        
+
                     }
                     }>Add</button>
                 </div>

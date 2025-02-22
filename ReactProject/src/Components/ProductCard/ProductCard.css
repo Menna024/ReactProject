@@ -64,4 +64,9 @@
 }
 .product-card-product-card .heart-icon {
   margin-top: 0.625rem;
+}
+.product-card-product-card .wishlisted {
+  color: red;
+  background-color: red;
+  margin-top: 0.625rem;
 }/*# sourceMappingURL=ProductCard.css.map */
