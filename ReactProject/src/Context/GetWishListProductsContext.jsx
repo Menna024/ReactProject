@@ -6,7 +6,6 @@ export const GetWishListProductsContext = createContext();
 const GetWishListProductsContextProvider = ({ children }) => {
 
     function getWishListProducts(token) {
-        console.log('GetWishListProducts api context');
 
         return axios.get('https://ecommerce.routemisr.com/api/v1/wishlist',
             {
@@ -15,8 +14,8 @@ const GetWishListProductsContextProvider = ({ children }) => {
                 }
             }
         ).
-            then(response => { console.log(response.data); return response.data })
-            .catch(error => { console.log(error.response.data); return error.response.data });
+            then(response => { return response.data })
+            .catch(error => { return error.response.data });
     }
 
     return (

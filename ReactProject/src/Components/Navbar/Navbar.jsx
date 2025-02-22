@@ -16,8 +16,10 @@ const Navbar = () => {
     }
 
     useEffect(() => {
-        console.log('token:', token);
-        console.log('token.Token:', localStorage.getItem('token'));
+        if(localStorage.getItem('token'))
+        {
+            token.setToken(localStorage.getItem('token'));
+        }        
     }, [token]);
 
     return (

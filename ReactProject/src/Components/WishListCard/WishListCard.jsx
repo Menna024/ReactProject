@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
 import { toast, ToastContainer } from 'react-toastify';
 import { RemoveProdWishListContext } from "../../Context/RemoveProdWishListContext";
+import {  useNavigate } from "react-router-dom";
 
 const WishListCard = ({ product , onRemove}) => {
     const useAddProdToCart = useContext(AddProdToCartContext);
@@ -11,6 +12,7 @@ const WishListCard = ({ product , onRemove}) => {
 
     async function addProductToCartFromAPI(productID) {
         const resp = await useAddProdToCart.addProductToCart(productID);
+        const navigate=useNavigate();
 
         if (resp.status == 'success') {
             console.log(resp.message)
@@ -19,6 +21,11 @@ const WishListCard = ({ product , onRemove}) => {
                 toast.success(resp.message);
             }, 1000);
 
+        }
+        else if (resp.message=='Please login to add to wishlist'){
+            console.log(resp.message)
+            toast.error(resp.message);
+            navigate('/login');
         }
         else {
             console.log(resp.message)

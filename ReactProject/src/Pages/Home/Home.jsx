@@ -17,23 +17,15 @@ const Home = () => {
     async function getAllProductsFromAPI() {
         const resp = await useAllProducts.getAllProducts();
 
-        console.log('response from get all products api', resp);
-
         setProducts(resp.data);
-        console.log('produt state ', products);
 
     }
 
 
     async function getWishListProductsFromAPI() {
-        // if (!token) return;
-        console.log('get wishlist products from api function INSIDE HOME COMPONENT');
         const resp = await useWishListProducts.getWishListProducts(token);
-        console.log('response from get wishlist products api', resp);
         if (resp.status == 'success') {
             setWishListProducts(resp.data);
-            // console.log('response from get wishlist products apiz', resp.data);
-            // console.log('wishlist product in ASYNC FUNCTION', resp.data);
         }
     }
 
@@ -44,19 +36,8 @@ const Home = () => {
 
     useEffect(() => {
         if (products) {
-            console.log('products in use effect ', products);
             getWishListProductsFromAPI();
-        }
-
-        console.log('XXXproducts in use effect ', products);
-
-
-        if (products && wishListProducts) {
-            console.log('PRODS IN IF BOTH ', products);
-            console.log('WISHLIST PRODS IN IF BOTH ', wishListProducts);
-
-        }
-
+        }   
     }, [products, wishListProducts]);
 
     useEffect(() => {
@@ -74,14 +55,10 @@ const Home = () => {
                 <MainSlider />
                 <SecondarySlider />
                 <div className="home-products grid grid-cols-4 w-full">
-                    {console.log('home-product', products)}
+                    
                     {products &&
                         products.map((product) => (
-                            <div key={product.id} className="home-product" >
-                                {
-                                    console.log('products COMPARE WISH AND NOREMAL ', wishListProducts &&
-                                        wishListProducts.some(wishListProduct => wishListProduct.id == product.id), product.id, 'WISHLIST', wishListProducts)
-                                }
+                            <div key={product.id} className="home-product" >                              
                                 <ProductCard product={product} isFav={wishListProducts &&
                                     wishListProducts.some(wishListProduct => wishListProduct.id == product.id)}
                                 />

@@ -27,26 +27,9 @@ const MainSlider = () => {
         // slidesToScroll: 1,
     };
 
-    console.log('categories', data?.data?.data);
-    // return (
-    //     <Slider {...settings} className='secondary-slider'>
-    //         {/* <div className='secondary-slider'> */}
-    //             {data?.data?.data?.map((category) => (
-    //                 < div key={category._id} className='bg-red-600 ' >
-    //                     {console.log('category id', category._id)}
-    //                     <img src={category.image} alt={category.name} className='category-img' />
-    //                     <h3 className='xo bg-green-700 z-50'>{category._id}</h3>
-    //                 </div>
-    //             ))}
-    //         {/* </div> */}
-    //     </Slider >
-    // );
-
     return (
         <div className="main-slider-container">
             <Slider {...settings}>
-
-
                 {data?.data?.data?.slice(0, 2).map((category) => (
                     <div key={category._id} className='category-slide'>
                         <img src={category.image} alt={category.name} className='category-img' />

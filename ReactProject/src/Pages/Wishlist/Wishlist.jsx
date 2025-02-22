@@ -1,36 +1,38 @@
 import './Wishlist.css';
-import { useContext, useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import { GetWishListProductsContext } from '../../Context/GetWishListProductsContext';
 import WishListCard from '../../Components/WishListCard/WishListCard';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Wishlist = () => {
     const [products, setProducts] = useState();
     const useWishListProducts = useContext(GetWishListProductsContext);
     const token = localStorage.getItem('token');
-    // console.log('hi wishlist token', token);
+    const navigate =useNavigate();
+
     useEffect(() => {
-        // console.log('hi wishlist token', token);
+        if (token==null) {
+            navigate('/login');
+        }
+
         getWishListProductsFromAPI();
     }, [token]);
 
     async function getWishListProductsFromAPI() {
         const resp = await useWishListProducts.getWishListProducts(token);
-        setTimeout(() => {
-            toast.success(resp.message);
-        }, 500);
+
         if (resp.status == 'success') {
+            setTimeout(() => {
+                toast.success(resp.message);
+            }, 500);
+
             setProducts(resp.data);
-            console.log('response from get wishlist products apiz', resp.data);
-            console.log('prodz', products);
-
-
-
         }
     }
 
     function handleProductRemove() {
-        console.log('handleProductRemove wishlist');
+        // console.log('handleProductRemove wishlist');
         getWishListProductsFromAPI();
     }
 
