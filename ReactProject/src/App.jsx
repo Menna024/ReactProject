@@ -36,6 +36,8 @@ import { CreateOrderContextProvider } from './Context/CreateOrderContext';
 import { ClearCartContextProvider } from './Context/ClearCartContext';
 import { RemoveProdCartContextProvider } from './Context/RemoveProdCartContext';
 import { RemoveProdWishListContextProvider } from './Context/RemoveProdWishListContext';
+import { CheckoutSessionContextProvider } from './Context/CheckoutSessionContext';
+import { UserIDContextProvider } from './Context/UserIDContext';
 
 function App() {
   const routes = createBrowserRouter(
@@ -96,47 +98,50 @@ function App() {
 
   return (
     <TokenContextProvider>
-      <CartIDContextProvider>
-        <QueryClientProvider client={queryClient}>
-
-          <CreateOrderContextProvider>
-            <AddProdToCartContextProvider>
-              <AddProdToWishListContextProvider>
-                <ProductDetailsContextProvider>
-                  <GetAllProductsContextProvider>
-                    <GetAllCategoriesContextProvider>
-                      <GetAllBrandsContextProvider>
-                        <GetCartProductsContextProvider>
-                          <GetWishListProductsContextProvider>
-                            <RemoveProdCartContextProvider>
-                              <RemoveProdWishListContextProvider>
-                                <ClearCartContextProvider>
-                                  <ResetPasswordContextProvider>
-                                    <VerifyCodeContextProvider>
-                                      <ForgotPassContextProvider>
-                                        <LoginContextProvider>
-                                          <RegisterContextProvider>
-                                            <RouterProvider router={routes}>
-                                            </RouterProvider>
-                                          </RegisterContextProvider>
-                                        </LoginContextProvider>
-                                      </ForgotPassContextProvider>
-                                    </VerifyCodeContextProvider>
-                                  </ResetPasswordContextProvider>
-                                </ClearCartContextProvider>
-                              </RemoveProdWishListContextProvider>
-                            </RemoveProdCartContextProvider>
-                          </GetWishListProductsContextProvider>
-                        </GetCartProductsContextProvider>
-                      </GetAllBrandsContextProvider>
-                    </GetAllCategoriesContextProvider>
-                  </GetAllProductsContextProvider>
-                </ProductDetailsContextProvider>
-              </AddProdToWishListContextProvider>
-            </AddProdToCartContextProvider>
-          </CreateOrderContextProvider>
-        </QueryClientProvider>
-      </CartIDContextProvider>
+      <UserIDContextProvider>
+        <CartIDContextProvider>
+          <QueryClientProvider client={queryClient}>
+            <CheckoutSessionContextProvider>
+              <CreateOrderContextProvider>
+                <AddProdToCartContextProvider>
+                  <AddProdToWishListContextProvider>
+                    <ProductDetailsContextProvider>
+                      <GetAllProductsContextProvider>
+                        <GetAllCategoriesContextProvider>
+                          <GetAllBrandsContextProvider>
+                            <GetCartProductsContextProvider>
+                              <GetWishListProductsContextProvider>
+                                <RemoveProdCartContextProvider>
+                                  <RemoveProdWishListContextProvider>
+                                    <ClearCartContextProvider>
+                                      <ResetPasswordContextProvider>
+                                        <VerifyCodeContextProvider>
+                                          <ForgotPassContextProvider>
+                                            <LoginContextProvider>
+                                              <RegisterContextProvider>
+                                                <RouterProvider router={routes}>
+                                                </RouterProvider>
+                                              </RegisterContextProvider>
+                                            </LoginContextProvider>
+                                          </ForgotPassContextProvider>
+                                        </VerifyCodeContextProvider>
+                                      </ResetPasswordContextProvider>
+                                    </ClearCartContextProvider>
+                                  </RemoveProdWishListContextProvider>
+                                </RemoveProdCartContextProvider>
+                              </GetWishListProductsContextProvider>
+                            </GetCartProductsContextProvider>
+                          </GetAllBrandsContextProvider>
+                        </GetAllCategoriesContextProvider>
+                      </GetAllProductsContextProvider>
+                    </ProductDetailsContextProvider>
+                  </AddProdToWishListContextProvider>
+                </AddProdToCartContextProvider>
+              </CreateOrderContextProvider>
+            </CheckoutSessionContextProvider>
+          </QueryClientProvider>
+        </CartIDContextProvider>
+      </UserIDContextProvider>
     </TokenContextProvider >
   )
 }

@@ -2,10 +2,12 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import './CheckOut.css';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { CreateOrderContext } from '../../Context/CreateOrderContext';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { CheckoutSessionContext } from '../../Context/CheckoutSessionContext';
+import { UserIDContext } from '../../Context/UserIDContext';
 
 const CheckOut = () => {
 
@@ -13,9 +15,10 @@ const CheckOut = () => {
     const [successMsgFromAPI, setSuccessMsgFromAPI] = useState('');
     const useCreateOrder = useContext(CreateOrderContext);
     const { cartID } = useParams();
-    
+    const useCheckoutSession = useContext(CheckoutSessionContext);
+    const useUserID = useContext(UserIDContext);
+    // const navigate = useNavigate();
 
-    const navigate = useNavigate();
     const formik = useFormik(
         {
             initialValues: {
@@ -38,17 +41,31 @@ const CheckOut = () => {
 
 
     async function callCheckoutAPI(registerData) {
-        const resp = await useCreateOrder.createOrder(cartID,registerData);
+        const resp = await useCreateOrder.createOrder(cartID, registerData);
 
-        if(resp.statusMsg=='fail')
-        {
+        if (resp.statusMsg == 'fail') {
             setSuccessMsgFromAPI('');
             setErrorMsgFromAPI(resp.message);
             toast.error(resp.message);
         }
-        else if(resp.status=='success')
-        console.log('response from checkout api', resp);
+        else if (resp.status == 'success')
+        {
+            setErrorMsgFromAPI('');
+            setSuccessMsgFromAPI(resp.message);
+            toast.success(resp.message);
+            console.log('response from checkout api', resp);
+            useUserID.setUserID(resp.data.user);
+            console.log('userid:', resp.data.user);
+            Navigate('/payment');
+            // callCheckoutSessionFromAPI(registerData);
+        }
     }
+
+    // async function callCheckoutSessionFromAPI(registerData) {
+    //     const resp = await useCheckoutSession.createCheckoutSession(cartID,registerData);
+    //     console.log('response from checkout session API', resp);
+    // }
+
 
     return (
         <>

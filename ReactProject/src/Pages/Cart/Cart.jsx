@@ -16,8 +16,6 @@ const Cart = () => {
     const [cartID, setCartID] = useState();
     const navigate = useNavigate();
 
-    // console.log('hi cart token', token);
-
     async function getCartProductsFromAPI() {
         const resp = await useCartProducts.getCartProducts(token);
 
@@ -26,7 +24,7 @@ const Cart = () => {
         setCartProducts(resp.data);
         setCartID(resp.data._id);
         useCartID.setCartID(resp.data._id);
-        console.log('cartid:', cartID);
+        // console.log('cartid:', cartID);
 
         if (resp.status == 'success') {
             useCartID.setCartID(resp.CartID);
@@ -65,7 +63,7 @@ const Cart = () => {
         return (    
             <div>
                 <p className="cart-heading bg-red-800">My cart</p>
-
+                {/* <p>Total Price: {} </p> */}
                 <button className='cart-clear-cart-btn outline-green-600 bg-transparent'
                     onClick={() => {
                         {

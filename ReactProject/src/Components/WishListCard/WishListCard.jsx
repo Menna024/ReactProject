@@ -4,15 +4,16 @@ import { useContext } from 'react';
 import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
 import { toast, ToastContainer } from 'react-toastify';
 import { RemoveProdWishListContext } from "../../Context/RemoveProdWishListContext";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const WishListCard = ({ product , onRemove}) => {
+const WishListCard = ({ product, onRemove }) => {
     const useAddProdToCart = useContext(AddProdToCartContext);
     const useRemoveProdWishList = useContext(RemoveProdWishListContext);
-
+    const navigate = useNavigate();
+    
     async function addProductToCartFromAPI(productID) {
         const resp = await useAddProdToCart.addProductToCart(productID);
-        const navigate=useNavigate();
+
 
         if (resp.status == 'success') {
             console.log(resp.message)
@@ -20,9 +21,8 @@ const WishListCard = ({ product , onRemove}) => {
             setTimeout(() => {
                 toast.success(resp.message);
             }, 1000);
-
         }
-        else if (resp.message=='Please login to add to wishlist'){
+        else if (resp.message == 'Please login to add to wishlist') {
             console.log(resp.message)
             toast.error(resp.message);
             navigate('/login');
@@ -50,16 +50,16 @@ const WishListCard = ({ product , onRemove}) => {
             <div className="p-2 text-center wishlist-product-details">
                 <p className="name">{product.title}</p>
                 <p className="price">{product.price} EGP</p>
-                <span className="remove"   onClick={
-                        () => {
-                            console.log('remove clicked on prod id  ', product.id);
-                            removeProductFromWishListFromAPI(product.id);
-                            console.log('removed from wishlist');
-                            // Navigate('/cart');
-                                
-                        }
-                    } ><IoTrashBin color="red"
-                  /> Remove</span>
+                <span className="remove" onClick={
+                    () => {
+                        console.log('remove clicked on prod id  ', product.id);
+                        removeProductFromWishListFromAPI(product.id);
+                        console.log('removed from wishlist');
+                        // Navigate('/cart');
+
+                    }
+                } ><IoTrashBin color="red"
+                    /> Remove</span>
             </div>
 
             <button className='wishlist-add-to-cart-btn outline-green-600 bg-transparent'
