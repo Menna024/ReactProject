@@ -1,12 +1,15 @@
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useContext, useEffect, useState } from "react";
 import { GetAllProductsContext } from "../../Context/GetAllProductsContext";
-
+import { GetWishListProductsContext } from "../../Context/GetWishListProductsContext";
 import './Products.css';
 
 const Products = () => {
     const [products, setProducts] = useState();
     const useAllProducts = useContext(GetAllProductsContext);
+    const useWishListProducts = useContext(GetWishListProductsContext);
+    const [wishListProducts, setWishListProducts] = useState();
+    const token = localStorage.getItem('token');
 
     async function getAllProductsFromAPI() {
         const resp = await useAllProducts.getAllProducts();
@@ -18,9 +21,24 @@ const Products = () => {
 
     }
 
+    async function getWishListProductsFromAPI() {
+        const resp = await useWishListProducts.getWishListProducts(token);
+        if (resp.status == 'success') {
+            setWishListProducts(resp.data);
+        }
+    }
+
     useEffect(() => {
         getAllProductsFromAPI();
     }, []);
+
+    useEffect(() => {
+
+        if (products) {
+            getWishListProductsFromAPI();
+        }
+    }, [products, wishListProducts]);
+
 
 
     return (
@@ -31,7 +49,8 @@ const Products = () => {
                     {products &&
                         products.map((product) => (
                             <div key={product.id} className="products-component-product">
-                                <ProductCard product={product} />
+                                <ProductCard product={product} isFav={wishListProducts &&
+                                    wishListProducts.some(wishListProduct => wishListProduct.id == product.id)}/>
                             </div>
                         ))}
                 </div>

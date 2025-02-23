@@ -54,3 +54,23 @@
 
 
 }
+
+
+.cart-icon{
+    cursor: pointer;
+}
+
+.cart-icon-container{
+    position: relative;
+
+    .cart-counter{
+        position: absolute;
+        top: 10px;
+        // right: -25px;
+        // background-color: red;
+        color: green;
+        border-radius: 50%;
+        padding: 0.2rem;
+        font-size: 0.8rem;
+    }   
+}

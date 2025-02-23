@@ -20,7 +20,7 @@ const Categories = () => {
 
     useEffect(() => {
         getAllcategoryFromAPI();
-    }, []);
+    }, );
 
 
 

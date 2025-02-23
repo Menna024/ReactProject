@@ -1,23 +1,22 @@
 import { toast, ToastContainer } from "react-toastify";
 import CartCard from "../../Components/CartCard/CartCard";
-import { GetCartProductsContext } from "../../Context/GetCartProductsContext";
+// import { GetCartProductsContext } from "../../Context/GetCartProductsContext";
 import { CartIDContext } from "../../Context/CartIDContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Cart.css';
-import { ClearCartContext } from "../../Context/ClearCartContext";
+import { CartContext } from "../../Context/CartContext";
 
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState();
-    const useCartProducts = useContext(GetCartProductsContext);
-    const useClearCart = useContext(ClearCartContext);
+    const useCart = useContext(CartContext);
     const useCartID = useContext(CartIDContext);
     const token = localStorage.getItem('token');
     const [cartID, setCartID] = useState();
     const navigate = useNavigate();
 
     async function getCartProductsFromAPI() {
-        const resp = await useCartProducts.getCartProducts(token);
+        const resp = await useCart.getLoggedUserCart();
 
         console.log('response from get all products api', resp.data);
         console.log('CARTID from get all products api', resp.data._id);
@@ -36,7 +35,7 @@ const Cart = () => {
     }
 
     async function clearCartFromAPI() {
-        const resp = await useClearCart.clearCart(token);
+        const resp = await useCart.clearCart();
         if (resp.message == 'success') {
             toast.success('Cart cleared successfully');
             setCartProducts();

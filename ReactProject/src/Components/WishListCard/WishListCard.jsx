@@ -1,18 +1,19 @@
 import { IoTrashBin } from "react-icons/io5";
 import './WishListCard.css';
 import { useContext } from 'react';
-import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
+// import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
+import { CartContext } from "../../Context/CartContext";
 import { toast, ToastContainer } from 'react-toastify';
 import { RemoveProdWishListContext } from "../../Context/RemoveProdWishListContext";
 import { useNavigate } from "react-router-dom";
 
 const WishListCard = ({ product, onRemove }) => {
-    const useAddProdToCart = useContext(AddProdToCartContext);
+    const useCart = useContext(CartContext);
     const useRemoveProdWishList = useContext(RemoveProdWishListContext);
     const navigate = useNavigate();
     
     async function addProductToCartFromAPI(productID) {
-        const resp = await useAddProdToCart.addProductToCart(productID);
+        const resp = await useCart.addProductToCart(productID);
 
 
         if (resp.status == 'success') {

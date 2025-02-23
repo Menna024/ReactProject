@@ -5,7 +5,8 @@ import { BsStarFill } from "react-icons/bs";
 import { GiHearts } from "react-icons/gi";
 import './ProductDetails.css';
 import ProductSlider from "../../Components/ProductSlider/ProductSlider";
-import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
+// import { AddProdToCartContext } from "../../Context/AddProdToCartContext";
+import { CartContext } from "../../Context/CartContext";
 import { TokenContext } from "../../Context/TokenContext";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -14,7 +15,7 @@ const ProductDetails = () => {
     const useProductDetails = useContext(ProductDetailsContext);
     const [productDetails, setProductDetails] = useState();
     const token = useContext(TokenContext);
-    const useAddProdToCart = useContext(AddProdToCartContext);
+    const useCart = useContext(CartContext);
 
     async function getProdDetailsFromAPI() {
         const resp = await useProductDetails.getProductDetails(id);
@@ -31,7 +32,7 @@ const ProductDetails = () => {
 
 
     async function addProductToCartFromAPI(productID) {
-        const resp = await useAddProdToCart.addProductToCart(productID);
+        const resp = await useCart.addProductToCart(productID);
 
         if (resp.status == 'success') {
             console.log(resp.message)

@@ -2,15 +2,15 @@ import { IoTrashBin } from "react-icons/io5";
 import './CartCard.css';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import { RemoveProdCartContext } from '../../Context/RemoveProdCartContext';
+import { CartContext } from "../../Context/CartContext";
 import { useContext } from "react";
 
 const CartCard = ({ product }) => {
     const Navigate = useNavigate();
-    const useRemoveProductCart = useContext(RemoveProdCartContext);
+    const useCart = useContext(CartContext);
 
     async function removeProductFromCartFromAPI(productID) {
-        const resp = await useRemoveProductCart.removeProdCart(productID);
+        const resp = await useCart.removeProdCart(productID);
 
         if (resp.status == 'success') {
             console.log(resp);
@@ -33,7 +33,8 @@ const CartCard = ({ product }) => {
                         console.log('remove clicked on prod id  ', product._id);
                         removeProductFromCartFromAPI(product._id);
                         console.log('navigate to cart');
-                        // Navigate('/cart');
+                        
+                        Navigate('/cart');
                     }
                 }><IoTrashBin color="red"
                     /> Remove</span>

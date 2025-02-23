@@ -12,7 +12,7 @@ const Home = () => {
     const useWishListProducts = useContext(GetWishListProductsContext);
     const token = localStorage.getItem('token');
     const [wishListProducts, setWishListProducts] = useState();
-    const [heartedProducts, setHeartedProducts] = useState([]);
+    // const [heartedProducts, setHeartedProducts] = useState([]);
 
     async function getAllProductsFromAPI() {
         const resp = await useAllProducts.getAllProducts();
@@ -33,12 +33,6 @@ const Home = () => {
     useEffect(() => {
         getAllProductsFromAPI();
     }, []);
-
-    useEffect(() => {
-        if (products) {
-            getWishListProductsFromAPI();
-        }   
-    }, [products, wishListProducts]);
 
     useEffect(() => {
 

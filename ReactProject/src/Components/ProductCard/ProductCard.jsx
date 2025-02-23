@@ -6,16 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AddProdToWishListContext } from '../../Context/AddProdToWishListContext';
 import { ToastContainer, toast } from 'react-toastify';
-import { AddProdToCartContext } from '../../Context/AddProdToCartContext';
+// import { AddProdToCartContext } from '../../Context/AddProdToCartContext';
 import { TokenContext } from '../../Context/TokenContext';
-
+import { CartContext } from '../../Context/CartContext';
 
 const ProductCard = ({ product, isFav }) => {
 
     const navigate = useNavigate();
     const token = useContext(TokenContext);
     const useAddProdToWishList = useContext(AddProdToWishListContext);
-    const useAddProdToCart = useContext(AddProdToCartContext);
+    const useCart = useContext(CartContext);
 
 
     async function addProductToWishListFromAPI(productID) {
@@ -38,7 +38,7 @@ const ProductCard = ({ product, isFav }) => {
 
 
     async function addProductToCartFromAPI(productID) {
-        const resp = await useAddProdToCart.addProductToCart(productID);
+        const resp = await useCart.addProductToCart(productID);
 
         if (resp.status == 'success') {
             toast.success(resp.message);
