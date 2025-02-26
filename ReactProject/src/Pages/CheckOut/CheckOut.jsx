@@ -1,23 +1,23 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import './CheckOut.css';
-import { useContext, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { CreateOrderContext } from '../../Context/CreateOrderContext';
+import { useContext, useEffect, useState } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import { CheckoutSessionContext } from '../../Context/CheckoutSessionContext';
 import { UserIDContext } from '../../Context/UserIDContext';
+import { CartContext } from '../../Context/CartContext';
+
 
 const CheckOut = () => {
 
     const [errorMsgFromAPI, setErrorMsgFromAPI] = useState('');
     const [successMsgFromAPI, setSuccessMsgFromAPI] = useState('');
-    const useCreateOrder = useContext(CreateOrderContext);
     const { cartID } = useParams();
-    const useCheckoutSession = useContext(CheckoutSessionContext);
+    const { cashOnDelivery, onlinePayment, numOfCartItems } = useContext(CartContext);
+    const { state } = useLocation();
     const useUserID = useContext(UserIDContext);
-    // const navigate = useNavigate();
+    // const navigate = useNavigate()
 
     const formik = useFormik(
         {
@@ -31,25 +31,40 @@ const CheckOut = () => {
                 phone: Yup.string().required('Phone is required'),
                 city: Yup.string().required('City is required')
             }),
-            onSubmit: values => {
+            onSubmit: async values => {
                 console.log(values);
                 // setRegisterData(values);
                 // console.log('setting registerdata state', registerData);
-                callCheckoutAPI(values);
+                if (state == 'online') {
+                    let OnlinePaymentResponse = await onlinePayment(values,cartID);
+                    console.log('OnlinePaymentResponse', OnlinePaymentResponse);
+                    console.log('STATUS OnlinePaymentResponse', OnlinePaymentResponse?.status);
+                    if (OnlinePaymentResponse?.status == "success") {
+                        console.log('OnlinePaymentResponse', OnlinePaymentResponse.session.url);
+                        window.location.href = OnlinePaymentResponse.session.url;
+                    }
+                }
+                else
+                    callCheckoutAPI(values);
             }
         });
 
+    // async function callOnlinePaymentAPI(registerData) {
+    //     let OnlinePaymentResponse = await onlinePayment(registerData, cartID);
+    //     return OnlinePaymentResponse;
+    // }
 
     async function callCheckoutAPI(registerData) {
-        const resp = await useCreateOrder.createOrder(cartID, registerData);
+
+        const resp = await cashOnDelivery(registerData);
 
         if (resp.statusMsg == 'fail') {
             setSuccessMsgFromAPI('');
             setErrorMsgFromAPI(resp.message);
             toast.error(resp.message);
         }
-        else if (resp.status == 'success')
-        {
+        else if (resp.status == 'success') {
+
             setErrorMsgFromAPI('');
             setSuccessMsgFromAPI(resp.message);
             toast.success(resp.message);
@@ -61,11 +76,11 @@ const CheckOut = () => {
         }
     }
 
-    // async function callCheckoutSessionFromAPI(registerData) {
-    //     const resp = await useCheckoutSession.createCheckoutSession(cartID,registerData);
-    //     console.log('response from checkout session API', resp);
-    // }
-
+    useEffect(() => {
+        console.log('cartID', cartID);
+        console.log('numOfCartItems', numOfCartItems);
+    }
+        ,);
 
     return (
         <>
@@ -92,7 +107,7 @@ const CheckOut = () => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div >
             <ToastContainer />
         </>
     );

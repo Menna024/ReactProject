@@ -30,9 +30,7 @@ import { AddProdToWishListContextProvider } from './Context/AddProdToWishListCon
 import { GetWishListProductsContextProvider } from './Context/GetWishListProductsContext';
 import { CartIDContextProvider } from './Context/CartIDContext';
 import CheckOut from './Pages/CheckOut/CheckOut';
-import { CreateOrderContextProvider } from './Context/CreateOrderContext';
 import { RemoveProdWishListContextProvider } from './Context/RemoveProdWishListContext';
-import { CheckoutSessionContextProvider } from './Context/CheckoutSessionContext';
 import { UserIDContextProvider } from './Context/UserIDContext';
 import Payment from './Pages/Payment/Payment';
 import { CartContextProvider } from './Context/CartContext';
@@ -102,8 +100,6 @@ function App() {
       <UserIDContextProvider>
         <CartIDContextProvider>
           <QueryClientProvider client={queryClient}>
-            <CheckoutSessionContextProvider>
-              <CreateOrderContextProvider>
                 <AddProdToWishListContextProvider>
                   <ProductDetailsContextProvider>
                     <GetAllProductsContextProvider>
@@ -132,8 +128,6 @@ function App() {
                     </GetAllProductsContextProvider>
                   </ProductDetailsContextProvider>
                 </AddProdToWishListContextProvider>
-              </CreateOrderContextProvider>
-            </CheckoutSessionContextProvider>
           </QueryClientProvider>
         </CartIDContextProvider>
       </UserIDContextProvider>

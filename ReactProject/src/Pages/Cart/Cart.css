@@ -1,13 +1,87 @@
-.cart-clear-cart-btn {
+.clear-btn {
   margin-top: 20px;
-  border: 1px solid green;
+  border: 1px solid red;
   color: black;
-  padding: 10px;
   font-size: 20px;
   cursor: pointer;
   transition: 0.3s;
+  text-align: center;
+}
+
+#paymentMethod {
+  margin: 5rem;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 110px;
+  height: 50px;
+  font-weight: 500;
 }
 
 .cart-products {
   margin-top: 10rem;
+}
+
+.cart-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  align-items: center;
+}
+.cart-heading .cart-title {
+  font-size: 3rem;
+  color: black;
+}
+.cart-heading .cart-btn {
+  border: 1px solid green;
+  color: black;
+  font-size: 20px;
+  height: -moz-min-content;
+  height: min-content;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cart-heading .cart-btn:hover {
+  background-color: green;
+  color: white;
+}
+
+.cart-clear-btn {
+  border: 1px solid green;
+  color: black;
+  font-size: 20px;
+  height: -moz-min-content;
+  height: min-content;
+  cursor: pointer;
+  transition: 0.3s;
+  width: -moz-max-content;
+  width: max-content;
+  margin-bottom: 40px;
+}
+.cart-clear-btn:hover {
+  background-color: green;
+  color: white;
+}
+
+.cart-container {
+  text-align: center;
+}
+
+.cart-data {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+.total-price,
+.total-count {
+  font-size: 1.5rem;
+  color: green;
 }/*# sourceMappingURL=Cart.css.map */

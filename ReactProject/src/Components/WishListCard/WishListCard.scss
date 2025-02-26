@@ -3,15 +3,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
     
     .wishlist-product-details {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        transform: translateX(-6rem);
-
+        // transform: translateX(-6rem);
+        margin-left : 3.5rem;
+        // background-color: gray;
+        width: 50%;
 
         .price {
             font-size: 16px;
@@ -34,13 +36,13 @@
 
 
    .wishlist-product-img {
-        width: 100%;
+        width: 400px;
         height: 20rem;
         // background-color: red !important;
     }
     
     .wishlist-product-img img {
-        width: 100%;
+        width: 60%;
         height: 20rem;
         object-fit: contain;
     }
@@ -50,11 +52,14 @@
         font-size: 20px;
         font-weight: 400;
         border: 1px solid green;
-
+        margin-left: 2rem;
+        
         &:hover {
             background-color: green;
             color: #fff;
         }
     }
+
+    // background-color: greenyellow;
 
 }

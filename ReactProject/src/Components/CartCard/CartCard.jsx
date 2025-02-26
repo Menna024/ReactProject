@@ -10,6 +10,7 @@ const CartCard = ({ product }) => {
     const useCart = useContext(CartContext);
 
     async function removeProductFromCartFromAPI(productID) {
+        console.log('removeProductFromCartFromAPI', productID);
         const resp = await useCart.removeProdCart(productID);
 
         if (resp.status == 'success') {

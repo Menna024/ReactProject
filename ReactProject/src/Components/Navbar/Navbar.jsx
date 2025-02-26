@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <h1 className="site-name">Fresh Cart</h1>
-            {(token || localStorage.getItem('token')) && console.log('token:', token)}
+            {/* {(token || localStorage.getItem('token')) && console.log('token:', token)} */}
             {(token.Token || localStorage.getItem('token')) &&
                 <div className="nav-links">
                     <NavLink to="/home" className="nav-link">Home</NavLink>
