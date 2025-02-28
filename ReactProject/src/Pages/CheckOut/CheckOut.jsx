@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import './CheckOut.css';
 import { useContext, useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {  useLocation, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { UserIDContext } from '../../Context/UserIDContext';
@@ -14,10 +14,10 @@ const CheckOut = () => {
     const [errorMsgFromAPI, setErrorMsgFromAPI] = useState('');
     const [successMsgFromAPI, setSuccessMsgFromAPI] = useState('');
     const { cartID } = useParams();
-    const { cashOnDelivery, onlinePayment, numOfCartItems } = useContext(CartContext);
+    const useCart = useContext(CartContext);
     const { state } = useLocation();
     const useUserID = useContext(UserIDContext);
-    // const navigate = useNavigate()
+    const Navigate = useNavigate()
 
     const formik = useFormik(
         {
@@ -36,7 +36,7 @@ const CheckOut = () => {
                 // setRegisterData(values);
                 // console.log('setting registerdata state', registerData);
                 if (state == 'online') {
-                    let OnlinePaymentResponse = await onlinePayment(values,cartID);
+                    let OnlinePaymentResponse = await useCart.onlinePayment(values, cartID);
                     console.log('OnlinePaymentResponse', OnlinePaymentResponse);
                     console.log('STATUS OnlinePaymentResponse', OnlinePaymentResponse?.status);
                     if (OnlinePaymentResponse?.status == "success") {
@@ -44,8 +44,9 @@ const CheckOut = () => {
                         window.location.href = OnlinePaymentResponse.session.url;
                     }
                 }
-                else
+                else {
                     callCheckoutAPI(values);
+                }
             }
         });
 
@@ -56,7 +57,7 @@ const CheckOut = () => {
 
     async function callCheckoutAPI(registerData) {
 
-        const resp = await cashOnDelivery(registerData);
+        const resp = await useCart.cashOnDelivery(registerData,cartID);
 
         if (resp.statusMsg == 'fail') {
             setSuccessMsgFromAPI('');
@@ -68,17 +69,20 @@ const CheckOut = () => {
             setErrorMsgFromAPI('');
             setSuccessMsgFromAPI(resp.message);
             toast.success(resp.message);
-            console.log('response from checkout api', resp);
+            // console.log('response from checkout api', resp);
+            // numOfCartItems(0);
+            useCart.numOfCartItems=0;
+            useCart.cartIDFromContext='';
             useUserID.setUserID(resp.data.user);
-            console.log('userid:', resp.data.user);
-            Navigate('/payment');
+            // console.log('userid:', resp.data.user);
+            Navigate('/allorders');
             // callCheckoutSessionFromAPI(registerData);
         }
     }
 
     useEffect(() => {
-        console.log('cartID', cartID);
-        console.log('numOfCartItems', numOfCartItems);
+        // console.log('cartID', cartID);
+        // console.log('numOfCartItems', useCart.numOfCartItems);
     }
         ,);
 

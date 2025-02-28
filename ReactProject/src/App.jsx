@@ -24,6 +24,7 @@ import Brands from './Pages/Brands/Brands';
 import Wishlist from './Pages/Wishlist/Wishlist';
 import Categories from './Pages/Categories/Categories';
 import Cart from './Pages/Cart/Cart';
+import AllOrders from './Pages/AllOrders/AllOrders';
 import { GetAllBrandsContextProvider } from './Context/GetAllBrandsContext';
 import { GetAllCategoriesContextProvider } from './Context/GetAllCategoriesContext';
 import { AddProdToWishListContextProvider } from './Context/AddProdToWishListContext';
@@ -86,6 +87,9 @@ function App() {
           },
           {
             path: 'payment', element: <Payment />
+          },
+          {
+            path: 'allorders', element: <AllOrders />
           }
         ]
       }

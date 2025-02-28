@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext, use } from "react";
 import axios from 'axios';
+import { UserIDContext } from "./UserIDContext";
 
 export const CartContext = createContext();
 
@@ -7,6 +8,8 @@ const CartContextProvider = ({ children }) => {
     const [reload, setReload] = useState(false);
     const [numOfCartItems, setNumOfCartItems] = useState(0);
     const [cartID, setCartID] = useState(null);
+    const useUserID = useContext(UserIDContext);
+    const [userID, setUserID] = useState('');
 
     function addProductToCart(productID) {
         setReload(false);
@@ -104,11 +107,11 @@ const CartContextProvider = ({ children }) => {
     }
 
 
-    function cashOnDelivery( CreateOrderData) {
+    function cashOnDelivery( CreateOrderData,CartID) {
         
         console.log('CreateOrder api context');
-        console.log('CreateOrder data cartID', cartID);
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/${cartID}`,
+        console.log('CreateOrder data cartID', CartID);
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/${CartID}`,
             {
                 shippingAddress: {
                     details: CreateOrderData.details,
@@ -130,10 +133,24 @@ const CartContextProvider = ({ children }) => {
         let resp = await getLoggedUserCart();
         console.log('response from get data in useeffect', resp);
         setNumOfCartItems(resp?.numOfCartItems);
+        setUserID(resp?.data?.cartOwner);
+        console.log('num of cart items', resp?.numOfCartItems,'-USERID', userID);
         setCartID(resp?.cartId);
         
         console.log('num of cart items', resp?.numOfCartItems,'-', numOfCartItems);
-        console.log('CARTCONTcartID', resp?.cartId ,'-', cartID);
+        console.log('CARTCONTcartID', resp?.cartId ,'-', resp?.data?.cartOwner);
+        console.log('USERIDDD ', userID);
+    }
+
+    function getUserOrders() {
+        console.log('getUserOrders api context');
+        return axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${userID}`
+        ).
+            then(response => {
+                console.log('get user orders', response.data);
+                return response.data
+            })
+            .catch(error => { console.log(error.response.data); return error.response.data });
     }
 
     useEffect(() => {
@@ -151,7 +168,8 @@ const CartContextProvider = ({ children }) => {
                 numOfCartItems,
                 cartID,
                 onlinePayment,
-                cashOnDelivery
+                cashOnDelivery,
+                getUserOrders
             }}>
             {children}
         </CartContext.Provider>
